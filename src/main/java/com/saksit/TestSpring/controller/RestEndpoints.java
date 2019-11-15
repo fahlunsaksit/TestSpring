@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RestEndpoints {
+    /* mvn spring-boot:run -Dspring.profiles.active=qa
+     *
+     * command for run profile application-qa.properties
+     * */
 
     /*data comming from application.properties*/
     @Value("${default.course.name}")
@@ -17,7 +21,7 @@ public class RestEndpoints {
 
     @RequestMapping("/defaultCourse")
     public Course getDefaultCourse(@RequestParam(value = "name", defaultValue = "saksit", required = false) String name,
-                              @RequestParam(value = "chapterCount", defaultValue = "2", required = false) int chapterCount
+                                   @RequestParam(value = "chapterCount", defaultValue = "2", required = false) int chapterCount
     ) {
         return new Course(cName, chaptersCount);
     }
@@ -34,12 +38,10 @@ public class RestEndpoints {
         return "WELCOME MY WEB SPRING";
     }
 
-    @RequestMapping(method = RequestMethod.POST , value = "/register/course")
-    public String saveCourse(@RequestBody Course course){
-        return "Your code named "+ course.getName() + " with " + course.getChapterCount() + " chapters saved successfuly";
+    @RequestMapping(method = RequestMethod.POST, value = "/register/course")
+    public String saveCourse(@RequestBody Course course) {
+        return "Your code named " + course.getName() + " with " + course.getChapterCount() + " chapters saved successfuly";
     }
-
-
 
 
 }
